@@ -36,10 +36,10 @@ jobs:
   docker-build:
     runs-on: ubuntu-22.04
     needs: git-tag
+    env:
+      VERSION: ${{needs.git-tag.outputs.version}}
     steps:
-      - env:
-          VERSION: ${{needs.git-tag.outputs.version}}
-        run: echo "$VERSION"
+      - run: echo "$VERSION"
 
       - name: Check out code
         uses: actions/checkout@v3
@@ -59,6 +59,9 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+          IMAGE_TAG: $VERSION
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$VERSION .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$VERSION
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
