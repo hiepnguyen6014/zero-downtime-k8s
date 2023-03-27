@@ -33,8 +33,7 @@
     "**/*.tsx": [
       "prettier --write",
       "eslint"
-    ],
-    "*.scss": "prettier --write"
+    ]
   },
   "repository": {
     "type": "git",
