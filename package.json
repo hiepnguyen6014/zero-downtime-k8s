@@ -1,12 +1,13 @@
 {
   "name": "zero-downtime-k8s",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "@types/node": "18.15.10",
@@ -22,15 +23,34 @@
   "devDependencies": {
     "@commitlint/cli": "^17.5.0",
     "@commitlint/config-conventional": "^17.4.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "eslint-config-prettier": "^8.8.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.0"
+    "lint-staged": "^13.2.0",
+    "semantic-release": "^21.0.0"
   },
   "lint-staged": {
-    "*.tsx": [
+    "**/*.tsx": [
       "prettier --write",
       "eslint"
     ],
     "*.scss": "prettier --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hiepnguyen6014/zero-downtime-k8s.git"
+  },
+  "release": {
+    "branches": [
+      "develop"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/changelog"
+    ]
   }
 }
