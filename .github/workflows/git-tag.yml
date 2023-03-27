@@ -21,6 +21,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           semantic_version: 19.0.5
+          branch: develop
           extra_plugins: |
             @semantic-release/commit-analyzer
             @semantic-release/release-notes-generator
