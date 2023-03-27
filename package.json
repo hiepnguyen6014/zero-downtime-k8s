@@ -41,6 +41,9 @@
     "type": "git",
     "url": "https://github.com/hiepnguyen6014/zero-downtime-k8s.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "release": {
     "branches": [
       "develop"

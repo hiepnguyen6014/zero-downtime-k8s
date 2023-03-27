@@ -19,6 +19,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          semantic_version: 19.0.5
+          extra_plugins: |
+            @semantic-release/commit-analyzer
+            @semantic-release/release-notes-generator
+            @semantic-release/changelog@6.0.0
+            @semantic-release/npm
+            @semantic-release/git
 
       - name: Do something when a new release published
         if: steps.semantic.outputs.new_release_published == 'true'
